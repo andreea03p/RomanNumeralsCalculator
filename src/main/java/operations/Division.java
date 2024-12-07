@@ -2,76 +2,85 @@ package operations;
 
 public class Division extends Operation
 {
-    public String calculate(String roman1, String roman2)
+    @Override
+    public String calculate(String first, String second)
     {
-        String expandedRoman1 = ConvertToI(roman1);
-        String expandedRoman2 = ConvertToI(roman2);
+        if(!isValidRomanNumeral(first))
+        {
+            throw new IllegalArgumentException("Invalid Roman numeral character: " + first);
+        }
+        else if(!isValidRomanNumeral(second))
+        {
+            throw new IllegalArgumentException("Invalid Roman numeral character: " + second);
+        }
 
-        if (expandedRoman2.length() == 0)
+        if (second.isEmpty())
         {
             throw new ArithmeticException("Division by zero is not allowed.");
         }
 
-        int count = 0;
-        while (expandedRoman1.length() >= expandedRoman2.length())
+        String quotient = "";
+        String remainder = first;
+
+        while (hasQuotient(remainder, second) && !remainder.equals(second))
         {
-            expandedRoman1 = subtractStrings(expandedRoman1, expandedRoman2);
-            count++;
+            // System.out.println("r: " + remainder);
+            // System.out.println("q: " + quotient);
+
+            remainder = new Subtraction().calculate(remainder, second);
+            quotient = new Addition().calculate(quotient, "I");
         }
 
-        String result = ConvertFromI(count);
-
-        if (!isValidRomanNumeral(result))
+        if(remainder.equals(second))
         {
-            throw new IllegalArgumentException("Division result is not a valid Roman numeral.");
+            remainder = new Subtraction().calculate(remainder, second);
+            quotient = new Addition().calculate(quotient, "I");
         }
 
-        if(result.isEmpty())
-        {
-            return "NONE";
-        }
-
-        return result;
+        return (quotient.isEmpty() ? "ZERO" : quotient) + " rest " + (remainder.isEmpty() ? "ZERO" : remainder);
     }
 
-    private static String subtractStrings(String dividend, String divisor)
+    private boolean hasQuotient(String a, String b)
     {
-        StringBuilder result = new StringBuilder(dividend);
-        for (char c : divisor.toCharArray())
+
+        String sortedA = Operation.sort(a);
+        String sortedB = Operation.sort(b);
+
+        int i = 0;
+        int j = 0;
+
+        if(a.equals(b))
         {
-            int index = result.indexOf("I");
-            if (index != -1)
+            return true;
+        }
+
+        while (i < sortedA.length() && j < sortedB.length())
+        {
+            char charA = sortedA.charAt(i);
+            char charB = sortedB.charAt(j);
+
+            int indexA = getRomanOrderIndex(charA);
+            int indexB = getRomanOrderIndex(charB);
+
+            if (indexA > indexB)
             {
-                result.deleteCharAt(index);
+                return true;
             }
+            else if (indexA < indexB)
+            {
+                return false;
+            }
+
+            i++;
+            j++;
         }
-        return result.toString();
+
+        if (j == sortedB.length())
+        {
+            return true;
+        }
+
+        return false;
     }
 
-    public static String ConvertToI(String roman)
-    {
-        String expanded = Addition.replaceSubtractiveSymbols(roman);
-
-        expanded = expanded.replace("M", "CCCCCCCCCC");
-        expanded = expanded.replace("D", "CCCCC");
-        expanded = expanded.replace("C", "XXXXXXXXXX");
-        expanded = expanded.replace("L", "XXXXX");
-        expanded = expanded.replace("X", "IIIIIIIIII");
-        expanded = expanded.replace("V", "IIIII");
-
-        return expanded;
-    }
-
-    public static String ConvertFromI(int count)
-    {
-        StringBuilder roman = new StringBuilder();
-        while (count >= 1000) { roman.append("M"); count -= 1000; }
-        while (count >= 500) { roman.append("D"); count -= 500; }
-        while (count >= 100) { roman.append("C"); count -= 100; }
-        while (count >= 50) { roman.append("L"); count -= 50; }
-        while (count >= 10) { roman.append("X"); count -= 10; }
-        while (count >= 5) { roman.append("V"); count -= 5; }
-        while (count >= 1) { roman.append("I"); count -= 1; }
-        return Addition.replaceDuplicates(roman.toString());
-    }
 }

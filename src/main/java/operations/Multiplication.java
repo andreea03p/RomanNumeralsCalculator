@@ -2,39 +2,38 @@ package operations;
 
 public class Multiplication extends Operation
 {
+    @Override
     public String calculate(String first, String second)
     {
-        String expandedFirst = Addition.replaceSubtractiveSymbols(first);
-        String expandedSecond = Addition.replaceSubtractiveSymbols(second);
-
-        String secondLength = convertToI(second);
-
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < secondLength.length(); i++)
+        if(!isValidRomanNumeral(first))
         {
-            result.append(expandedFirst);
+            throw new IllegalArgumentException("Invalid Roman numeral character: " + first);
+        }
+        else if(!isValidRomanNumeral(second))
+        {
+            throw new IllegalArgumentException("Invalid Roman numeral character: " + second);
         }
 
-        String sortedResult = Addition.sort(result.toString());
-        String combinedResult = Addition.replaceDuplicates(sortedResult);
+        String operand1 = Operation.replaceSubtractiveSymbols(first);
+        String result = "";
 
-        if (!isValidRomanNumeral(combinedResult))
+        while (!second.equals("I"))
         {
-            throw new IllegalArgumentException("Multiplication result is not a valid Roman numeral.");
+            //System.out.println(operand2);
+            result = Operation.sort(result.concat(operand1));
+
+            second = new Subtraction().calculate(second, "I");
         }
 
-        return combinedResult;
+        result = Operation.sort(result.concat(operand1));
+        result = Operation.replaceDuplicates(result);
+
+        if (!isValidRomanNumeral(result))
+        {
+            throw new IllegalArgumentException("Invalid multiplication result. (overflow)");
+        }
+
+        return result;
     }
 
-    private String convertToI(String roman)
-    {
-        String expanded = Operation.replaceSubtractiveSymbols(roman);
-        expanded = expanded.replace("M", "CCCCCCCCCC");
-        expanded = expanded.replace("D", "CCCCC");
-        expanded = expanded.replace("C", "XXXXXXXXXX");
-        expanded = expanded.replace("L", "XXXXX");
-        expanded = expanded.replace("X", "IIIIIIIIII");
-        expanded = expanded.replace("V", "IIIII");
-        return expanded;
-    }
 }

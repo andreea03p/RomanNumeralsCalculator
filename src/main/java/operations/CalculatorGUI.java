@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CalculatorGUI extends JFrame {
+public class CalculatorGUI extends JFrame
+{
     private JTextField displayField;
     private StringBuilder currentInput = new StringBuilder();
     private String firstOperand = "";
@@ -95,7 +96,7 @@ public class CalculatorGUI extends JFrame {
                 try {
                     String result = performCalculation(firstOperand, secondOperand, operator);
                     displayField.setText(firstOperand + " " + operator + " " + secondOperand + " = " + result);
-                    clearInputFields(); // Reset after displaying the result
+                    clearInputFields();
                 } catch (Exception ex) {
                     displayField.setText("Error: " + ex.getMessage());
                 }
@@ -137,13 +138,15 @@ public class CalculatorGUI extends JFrame {
     }
 
     // Clear inputs for rewriting the operation
-    private void clearInputFields() {
+    private void clearInputFields()
+    {
         currentInput.setLength(0);
         firstOperand = "";
         operator = "";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         SwingUtilities.invokeLater(CalculatorGUI::new);
     }
 }

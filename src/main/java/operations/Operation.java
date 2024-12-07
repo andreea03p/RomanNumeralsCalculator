@@ -1,11 +1,7 @@
 package operations;
 
-import java.util.ArrayList;
-
 public abstract class Operation
 {
-    protected String operand1;
-    protected String operand2;
     static char[] order = {'I','V','X','L','C','D','M'};
 
     public Operation() {
@@ -31,22 +27,45 @@ public abstract class Operation
 
     public static String sort(String number)
     {
-        ArrayList<RomanNumber> roman = new ArrayList<RomanNumber>();
+        char[] charArray = number.toCharArray();
 
-        for (char i : number.toCharArray())
+        // sort the character array based on the roman numeral order
+        for (int i = 0; i < charArray.length - 1; i++)
         {
-            roman.add(new RomanNumber(i));
+            for (int j = i + 1; j < charArray.length; j++)
+            {
+                if (getRomanOrderIndex(charArray[i]) < getRomanOrderIndex(charArray[j]))
+                {
+                    char temp = charArray[i];
+                    charArray[i] = charArray[j];
+                    charArray[j] = temp;
+                }
+            }
         }
 
-        roman.sort(null);
-        number = new String();
-        for (RomanNumber i: roman)
+        StringBuilder sortedRoman = new StringBuilder();
+        for (char c : charArray)
         {
-            number = number + i.toString();
+            sortedRoman.append(c);
         }
 
-        return number;
+        return sortedRoman.toString();
     }
+
+    public static int getRomanOrderIndex(char c)
+    {
+        // find the index of the character in the order array
+        for (int i = 0; i < order.length; i++)
+        {
+            if (order[i] == c)
+            {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("Invalid Roman numeral character: " + c);
+    }
+
+
 
     public static String replaceDuplicates(String number)
     {

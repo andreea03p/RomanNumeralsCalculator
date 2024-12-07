@@ -1,355 +1,149 @@
-//package operations;
-//
-//import static org.junit.Assert.*;
-//import org.junit.Test;
-//
-//public class MainTest
-//{
-//    Addition calcAddition = new Addition();
-//    Subtraction calcSubtraction = new Subtraction();
-//    Multiplication calcMultiply = new Multiplication();
-//    Division calcDivision = new Division();
-//
-//    // --- Addition Tests ---
-//
-//    @Test
-//    public void onePlusOne() {
-//        assertEquals("II", calcAddition.calculate("I", "I"));
-//    }
-//
-//    @Test
-//    public void twoPlusTwo() {
-//        assertEquals("IV", calcAddition.calculate("II", "II"));
-//    }
-//
-//    @Test
-//    public void threePlusFive() {
-//        assertEquals("VIII", calcAddition.calculate("III", "V"));
-//    }
-//
-//    @Test
-//    public void fivePlusFive() {
-//        assertEquals("X", calcAddition.calculate("V", "V"));
-//    }
-//
-//    @Test
-//    public void tenPlusTen() {
-//        assertEquals("XX", calcAddition.calculate("X", "X"));
-//    }
-//
-//    @Test
-//    public void twentyPlusTwenty() {
-//        assertEquals("XL", calcAddition.calculate("XX", "XX"));
-//    }
-//
-//    @Test
-//    public void ninePlusOne() {
-//        assertEquals("X", calcAddition.calculate("IX", "I"));
-//    }
-//
-//    @Test
-//    public void thirtyPlusTwenty() {
-//        assertEquals("L", calcAddition.calculate("XXX", "XX"));
-//    }
-//
-//    @Test
-//    public void hundredPlusFifty() {
-//        assertEquals("CL", calcAddition.calculate("C", "L"));
-//    }
-//
-//    @Test
-//    public void hundredPlusHundred() {
-//        assertEquals("CC", calcAddition.calculate("C", "C"));
-//    }
-//
-//    @Test
-//    public void tenPlusTwo() {
-//        assertEquals("XII", calcAddition.calculate("X", "II"));
-//    }
-//
-//    @Test
-//    public void largeNumbersAddition() {
-//        assertEquals("MCCCXIII", calcAddition.calculate("MCLXXIV", "CXXXIX"));
-//    }
-//
-//    @Test
-//    public void onePlusThree() {
-//        assertEquals("IV", calcAddition.calculate("I", "III"));
-//    }
-//
-//    @Test
-//    public void onePlusNine() {
-//        assertEquals("X", calcAddition.calculate("I", "IX"));
-//    }
-//
-//    @Test
-//    public void fourPlusSix() {
-//        assertEquals("X", calcAddition.calculate("IV", "VI"));
-//    }
-//
-//    @Test
-//    public void sevenPlusSeven() {
-//        assertEquals("XIV", calcAddition.calculate("VII", "VII"));
-//    }
-//
-//    @Test
-//    public void fiveHundredPlusFiveHundred() {
-//        assertEquals("M", calcAddition.calculate("D", "D"));
-//    }
-//
-//    @Test
-//    public void fifteenPlusSixty() {
-//        assertEquals("LXXIV", calcAddition.calculate("XIV", "LX"));
-//    }
-//
-//    @Test
-//    public void onePlusHundred() {
-//        assertEquals("CI", calcAddition.calculate("I", "C"));
-//    }
-//
-//    @Test
-//    public void fiftyPlusFifty() {
-//        assertEquals("C", calcAddition.calculate("L", "L"));
-//    }
-//
-//    // --- Subtraction Tests ---
-//
-//    @Test
-//    public void fiveMinusOne() {
-//        assertEquals("IV", calcSubtraction.calculate("V", "I"));
-//    }
-//
-//    @Test
-//    public void tenMinusFive() {
-//        assertEquals("V", calcSubtraction.calculate("X", "V"));
-//    }
-//
-//    @Test
-//    public void twentyMinusTen() {
-//        assertEquals("X", calcSubtraction.calculate("XX", "X"));
-//    }
-//
-//    @Test
-//    public void fiftyMinusTwenty() {
-//        assertEquals("XXX", calcSubtraction.calculate("L", "XX"));
-//    }
-//
-//    @Test
-//    public void hundredMinusFifty() {
-//        assertEquals("L", calcSubtraction.calculate("C", "L"));
-//    }
-//
-//    @Test
-//    public void twentyFiveMinusTwenty() {
-//        assertEquals("V", calcSubtraction.calculate("XXV", "XX"));
-//    }
-//
-//    @Test
-//    public void hundredMinusHundred() {
-//        assertEquals("Error (Invalid, negative result)", calcSubtraction.calculate("C", "C"));
-//    }
-//
-//    @Test
-//    public void fifteenMinusSeven() {
-//        assertEquals("VIII", calcSubtraction.calculate("XV", "VII"));
-//    }
-//
-//    @Test
-//    public void twentyFiveMinusTen() {
-//        assertEquals("XV", calcSubtraction.calculate("XXV", "X"));
-//    }
-//
-//    @Test
-//    public void hundredAndFiftyMinusSeventyFive() {
-//        assertEquals("LXXV", calcSubtraction.calculate("CL", "LXXV"));
-//    }
-//
-//    @Test
-//    public void fiveMinusFive() {
-//        assertEquals("Error (Invalid, negative result)", calcSubtraction.calculate("V", "V"));
-//    }
-//
-//    @Test
-//    public void thirtyMinusTwentyFive() {
-//        assertEquals("V", calcSubtraction.calculate("XXX", "XXV"));
-//    }
-//
-//    @Test
-//    public void fiftyMinusForty() {
-//        assertEquals("X", calcSubtraction.calculate("L", "XL"));
-//    }
-//
-//    @Test
-//    public void fiftyMinusFortyFive() {
-//        assertEquals("V", calcSubtraction.calculate("L", "XLV"));
-//    }
-//
-//    @Test
-//    public void largeNumberSubtraction() {
-//        assertEquals("MCCCXIII", calcSubtraction.calculate("MCLXXIV", "CXXXIX"));
-//    }
-//
-//    @Test
-//    public void largeNumberSubtractionNegative() {
-//        assertEquals("Error (Invalid, negative result)", calcSubtraction.calculate("M", "CM"));
-//    }
-//
-//    @Test
-//    public void twentyMinusOne() {
-//        assertEquals("XIX", calcSubtraction.calculate("XX", "I"));
-//    }
-//
-//    @Test
-//    public void hundredMinusNinetyNine() {
-//        assertEquals("I", calcSubtraction.calculate("C", "XCIX"));
-//    }
-//
-//    @Test
-//    public void tenMinusNine() {
-//        assertEquals("I", calcSubtraction.calculate("X", "IX"));
-//    }
-//
-//    // --- Multiplication Tests ---
-//
-//    @Test
-//    public void oneTimesOne() {
-//        assertEquals("I", calcMultiply.calculate("I", "I"));
-//    }
-//
-//    @Test
-//    public void twoTimesThree() {
-//        assertEquals("VI", calcMultiply.calculate("II", "III"));
-//    }
-//
-//    @Test
-//    public void fiveTimesFive() {
-//        assertEquals("XXV", calcMultiply.calculate("V", "V"));
-//    }
-//
-//    @Test
-//    public void tenTimesTwo() {
-//        assertEquals("XX", calcMultiply.calculate("X", "II"));
-//    }
-//
-//    @Test
-//    public void threeTimesFour() {
-//        assertEquals("XII", calcMultiply.calculate("III", "IV"));
-//    }
-//
-//    @Test
-//    public void fiveTimesTen() {
-//        assertEquals("L", calcMultiply.calculate("V", "X"));
-//    }
-//
-//    @Test
-//    public void hundredTimesTwo() {
-//        assertEquals("CC", calcMultiply.calculate("C", "II"));
-//    }
-//
-//    @Test
-//    public void threeTimesThirty() {
-//        assertEquals("XC", calcMultiply.calculate("III", "XXX"));
-//    }
-//
-//    @Test
-//    public void twentyTimesFifty() {
-//        assertEquals("M", calcMultiply.calculate("XX", "L"));
-//    }
-//
-//    @Test
-//    public void tenTimesTen() {
-//        assertEquals("C", calcMultiply.calculate("X", "X"));
-//    }
-//
-//    @Test
-//    public void fourTimesSix() {
-//        assertEquals("XXIV", calcMultiply.calculate("IV", "VI"));
-//    }
-//
-//    @Test
-//    public void twentyFiveTimesTwo() {
-//        assertEquals("L", calcMultiply.calculate("XXV", "II"));
-//    }
-//
-//    @Test
-//    public void twoTimesTwo() {
-//        assertEquals("IV", calcMultiply.calculate("II", "II"));
-//    }
-//
-//    @Test
-//    public void hundredTimesTen() {
-//        assertEquals("M", calcMultiply.calculate("C", "X"));
-//    }
-//
-//    @Test
-//    public void fiveTimesTwenty() {
-//        assertEquals("C", calcMultiply.calculate("V", "XX"));
-//    }
-//
-//    @Test
-//    public void largeNumberMultiplication() {
-//        assertEquals("MMMMMMMMMMMMMM", calcMultiply.calculate("MMMM", "MMMM"));
-//    }
-//
-//    @Test
-//    public void tenTimesOne() {
-//        assertEquals("X", calcMultiply.calculate("X", "I"));
-//    }
-//
-//    @Test
-//    public void twoTimesFifty() {
-//        assertEquals("C", calcMultiply.calculate("II", "L"));
-//    }
-//
-//    // --- Division Tests ---
-//
-//    @Test
-//    public void tenDividedByTwo() {
-//        assertEquals("V", calcDivision.calculate("X", "II"));
-//    }
-//
-//    @Test
-//    public void twentyDividedByFive() {
-//        assertEquals("IV", calcDivision.calculate("XX", "V"));
-//    }
-//
-//    @Test
-//    public void hundredDividedByTen() {
-//        assertEquals("X", calcDivision.calculate("C", "X"));
-//    }
-//
-//    @Test
-//    public void fiftyDividedByFive() {
-//        assertEquals("X", calcDivision.calculate("L", "V"));
-//    }
-//
-//    @Test
-//    public void largeDivision() {
-//        assertEquals("II", calcDivision.calculate("CC", "C"));
-//    }
-//
-//    @Test
-//    public void twentyFiveDividedByFive() {
-//        assertEquals("V", calcDivision.calculate("XXV", "V"));
-//    }
-//
-//    @Test
-//    public void oneDividedByFive() {
-//        assertEquals("Error (Invalid, negative result)", calcDivision.calculate("I", "V"));
-//    }
-//
-//    @Test
-//    public void hundredDividedByTwo() {
-//        assertEquals("L", calcDivision.calculate("C", "II"));
-//    }
-//
-//    @Test
-//    public void hundredDividedByFour() {
-//        assertEquals("XXV", calcDivision.calculate("C", "IV"));
-//    }
-//
-//    @Test
-//    public void largeDivisionResult() {
-//        assertEquals("V", calcDivision.calculate("CCCC", "L"));
-//    }
-//}
+package operations;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class MainTest {
+    Addition calcAddition = new Addition();
+    Subtraction calcSubtraction = new Subtraction();
+    Multiplication calcMultiply = new Multiplication();
+    Division calcDivision = new Division();
+
+    // ---------------ADDITION--------------
+    @Test
+    public void additionSmallNumbers() {
+        assertEquals("II", calcAddition.calculate("I", "I"));
+    }
+
+    @Test
+    public void additionBoundaryNumbers() {
+        assertEquals("VI", calcAddition.calculate("IV", "II"));
+        assertEquals("V", calcAddition.calculate("II", "III"));
+        assertEquals("VI", calcAddition.calculate("III", "III"));
+        assertEquals("X", calcAddition.calculate("IX", "I"));
+        assertEquals("XIV", calcAddition.calculate("IX", "V"));
+    }
+
+    @Test
+    public void additionLargeNumbers() {
+        assertEquals("D", calcAddition.calculate("CCL", "CCL"));
+        assertEquals("MM", calcAddition.calculate("M", "M"));
+    }
+
+    @Test
+    public void additionDifferentBases() {
+        assertEquals("CCIX", calcAddition.calculate("C", "CIX"));
+        assertEquals("CXXXVI", calcAddition.calculate("XCV", "XLI"));
+        assertEquals("C", calcAddition.calculate("L", "L"));
+    }
+
+    @Test
+    public void additionInvalidInput1() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calcAddition.calculate("A", "MM"));
+        assertEquals("Invalid Roman numeral character: A", exception.getMessage());
+    }
+
+    @Test
+    public void additionInvalidInput2() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calcAddition.calculate("MMMM", "MM"));
+        assertEquals("Invalid Roman numeral character: MMMM", exception.getMessage());
+    }
+
+    @Test
+    public void additionOverflow() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calcAddition.calculate("II", "MMMCMXCIX"));
+        assertEquals("Invalid addition result. (overflow)", exception.getMessage());
+    }
+
+
+
+    // -------------SUBTRACTION---------------
+    @Test
+    public void subtractionSimpleCases() {
+        assertEquals("IV", calcSubtraction.calculate("V", "I")); // Basic case
+        assertEquals("X", calcSubtraction.calculate("XX", "X"));
+    }
+
+    @Test
+    public void subtractionZeroResult() {
+        assertEquals("NONE", calcSubtraction.calculate("X", "X")); // Exact match
+    }
+
+    @Test
+    public void subtractionInvalidCases() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calcSubtraction.calculate("IIII", "V"));
+        assertEquals("Invalid Roman numeral character: IIII", exception.getMessage());
+    }
+
+    @Test
+    public void subtractionUnderflow()
+    {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calcSubtraction.calculate("I", "V"));
+        assertEquals("Subtraction not possible: I < V", exception.getMessage());
+    }
+
+    @Test
+    public void subtractionLargeNumbers() {
+        assertEquals("MM", calcSubtraction.calculate("MMM", "M")); // Large values
+        assertEquals("CXL", calcSubtraction.calculate("CXC", "L"));
+    }
+
+    @Test
+    public void subtractionEdgeCases() {
+        assertEquals("IX", calcSubtraction.calculate("X", "I")); // Sequential edge
+        assertEquals("V", calcSubtraction.calculate("X", "V")); // Exact boundary match
+        assertEquals("NONE", calcSubtraction.calculate("V", "V")); // Exact match
+    }
+
+
+
+    // -----------MULTIPLICATION--------------
+    @Test
+    public void multiplicationSmallNumbers() {
+        assertEquals("I", calcMultiply.calculate("I", "I"));
+        assertEquals("VI", calcMultiply.calculate("II", "III"));
+    }
+
+    @Test
+    public void multiplicationLargeNumbers() {
+        assertEquals("MM", calcMultiply.calculate("M", "II"));
+        assertEquals("M", calcMultiply.calculate("C", "X"));
+        assertEquals("DCCXIV", calcMultiply.calculate("XIV", "LI"));
+    }
+
+    @Test
+    public void multiplicationOverflowTest() {
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> calcMultiply.calculate("MMM", "C")
+        );
+        assertEquals("Invalid multiplication result. (overflow)", exception.getMessage());
+    }
+
+
+
+    // -------------DIVISION---------------
+    @Test
+    public void divisionSimpleCases() {
+        assertEquals("I rest NONE", calcDivision.calculate("I", "I"));
+        assertEquals("V rest NONE", calcDivision.calculate("X", "II"));
+        assertEquals("CII rest NONE", calcDivision.calculate("DCCXIV", "VII"));
+    }
+
+    @Test
+    public void divisionSpecialCases() {
+        assertEquals("ZERO rest XLIV", calcDivision.calculate("XLIV", "MMMDCCCLXXXVIII"));
+        assertEquals("XXXIX rest LII", calcDivision.calculate("MMDLXXXVII", "LXV"));
+    }
+
+    @Test
+    public void divisionZeroDivision() {
+        ArithmeticException exception = assertThrows(
+                ArithmeticException.class,
+                () -> calcDivision.calculate("X", "")
+        );
+        assertEquals("Division by zero is not allowed.", exception.getMessage());
+    }
+
+}
+
