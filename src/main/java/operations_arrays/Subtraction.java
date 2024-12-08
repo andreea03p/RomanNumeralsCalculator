@@ -1,15 +1,15 @@
-package operations;
+package operations_arrays;
 
 public class Subtraction extends Operation
 {
     @Override
     public String calculate(String first, String second)
     {
-        if(!isValidRomanNumeral(first))
+        if (!isValidRomanNumeral(first))
         {
             throw new IllegalArgumentException("Invalid Roman numeral character: " + first);
         }
-        else if(!isValidRomanNumeral(second))
+        else if (!isValidRomanNumeral(second))
         {
             throw new IllegalArgumentException("Invalid Roman numeral character: " + second);
         }
@@ -28,7 +28,6 @@ public class Subtraction extends Operation
         {
             while (true)
             {
-                //System.out.println(remaining1);
                 int index = remaining1.indexOf(String.valueOf(c));
                 if (index != -1)
                 {
@@ -57,6 +56,7 @@ public class Subtraction extends Operation
         return simplifiedResult;
     }
 
+    // Fix: Modify using StringBuilder instead of System.arraycopy for the correct expansion.
     private void expandRoman1(StringBuilder roman1)
     {
         for (int i = roman1.length() - 1; i >= 0; i--)
@@ -88,18 +88,22 @@ public class Subtraction extends Operation
         }
     }
 
+    // Fix: Correctly use char[] and length property for array size
     private boolean isSubtractionPossible(String a, String b)
     {
         String sortedA = Operation.sort(a);
         String sortedB = Operation.sort(b);
 
+        char[] charArrayA = sortedA.toCharArray();
+        char[] charArrayB = sortedB.toCharArray();
+
         int i = 0;
         int j = 0;
 
-        while (i < sortedA.length() && j < sortedB.length())
+        while (i < charArrayA.length && j < charArrayB.length)
         {
-            char charA = sortedA.charAt(i);
-            char charB = sortedB.charAt(j);
+            char charA = charArrayA[i];
+            char charB = charArrayB[j];
 
             int indexA = getRomanOrderIndex(charA);
             int indexB = getRomanOrderIndex(charB);
@@ -117,11 +121,6 @@ public class Subtraction extends Operation
             j++;
         }
 
-        if (j == sortedB.length())
-        {
-            return true;
-        }
-
-        return false;
+        return j == charArrayB.length;
     }
 }

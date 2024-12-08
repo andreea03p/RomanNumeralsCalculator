@@ -1,4 +1,4 @@
-package operations;
+package operations_arrays;
 
 public class Division extends Operation
 {
@@ -42,22 +42,23 @@ public class Division extends Operation
 
     private boolean hasQuotient(String a, String b)
     {
-
         String sortedA = Operation.sort(a);
         String sortedB = Operation.sort(b);
+
+        char[] charArrayA = sortedA.toCharArray();
+        char[] charArrayB = sortedB.toCharArray();
 
         int i = 0;
         int j = 0;
 
-        if(a.equals(b))
-        {
+        if (a.equals(b)) {
             return true;
         }
 
-        while (i < sortedA.length() && j < sortedB.length())
+        while (i < charArrayA.length && j < charArrayB.length)
         {
-            char charA = sortedA.charAt(i);
-            char charB = sortedB.charAt(j);
+            char charA = charArrayA[i];
+            char charB = charArrayB[j];
 
             int indexA = getRomanOrderIndex(charA);
             int indexB = getRomanOrderIndex(charB);
@@ -75,12 +76,8 @@ public class Division extends Operation
             j++;
         }
 
-        if (j == sortedB.length())
-        {
-            return true;
-        }
-
-        return false;
+        return j == charArrayB.length;
     }
+
 
 }

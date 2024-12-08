@@ -1,13 +1,18 @@
-package operations;
+package operations_lists;
 
 import static org.junit.Assert.*;
+
+import operations_arrays.Addition;
+import operations_arrays.Division;
+import operations_arrays.Multiplication;
+import operations_arrays.Subtraction;
 import org.junit.Test;
 
 public class MainTest {
-    Addition calcAddition = new Addition();
-    Subtraction calcSubtraction = new Subtraction();
-    Multiplication calcMultiply = new Multiplication();
-    Division calcDivision = new Division();
+    operations_lists.Addition calcAddition = new operations_lists.Addition();
+    operations_lists.Subtraction calcSubtraction = new operations_lists.Subtraction();
+    operations_lists.Multiplication calcMultiply = new operations_lists.Multiplication();
+    operations_lists.Division calcDivision = new operations_lists.Division();
 
     // ---------------ADDITION--------------
     @Test

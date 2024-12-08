@@ -1,4 +1,4 @@
-package operations;
+package operations_arrays;
 
 public class Multiplication extends Operation
 {

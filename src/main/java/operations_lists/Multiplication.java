@@ -1,6 +1,6 @@
-package operations;
+package operations_lists;
 
-public class Addition extends Operation
+public class Multiplication extends Operation
 {
     @Override
     public String calculate(String first, String second)
@@ -13,17 +13,27 @@ public class Addition extends Operation
         {
             throw new IllegalArgumentException("Invalid Roman numeral character: " + second);
         }
-        String operand1 = Operation.replaceSubtractiveSymbols(first);
-        String operand2 = Operation.replaceSubtractiveSymbols(second);
-        String result = Operation.sort(operand1.concat(operand2));
 
+        String operand1 = Operation.replaceSubtractiveSymbols(first);
+        String result = "";
+
+        while (!second.equals("I"))
+        {
+            //System.out.println(operand2);
+            result = Operation.sort(result.concat(operand1));
+
+            second = new Subtraction().calculate(second, "I");
+        }
+
+        result = Operation.sort(result.concat(operand1));
         result = Operation.replaceDuplicates(result);
 
         if (!isValidRomanNumeral(result))
         {
-            throw new IllegalArgumentException("Invalid addition result. (overflow)");
+            throw new IllegalArgumentException("Invalid multiplication result. (overflow)");
         }
 
-        return Operation.replaceDuplicates(result);
+        return result;
     }
+
 }

@@ -1,4 +1,4 @@
-package operations;
+package operations_arrays;
 
 import javax.swing.*;
 import java.awt.*;
