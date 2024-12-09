@@ -24,8 +24,8 @@ public class Division extends Operation
 
         while (hasQuotient(remainder, second) && !remainder.equals(second))
         {
-            // System.out.println("r: " + remainder);
-            // System.out.println("q: " + quotient);
+//             System.out.println("r: " + remainder);
+//             System.out.println("q: " + quotient);
 
             remainder = new Subtraction().calculate(remainder, second);
             quotient = new Addition().calculate(quotient, "I");
@@ -42,17 +42,17 @@ public class Division extends Operation
 
     private boolean hasQuotient(String a, String b)
     {
+        System.out.println("r: " + a);
+        System.out.println("q: " + b);
+
+        a = Operation.replaceSubtractiveSymbols(a);
+        b = Operation.replaceSubtractiveSymbols(b);
 
         String sortedA = Operation.sort(a);
         String sortedB = Operation.sort(b);
 
         int i = 0;
         int j = 0;
-
-        if(a.equals(b))
-        {
-            return true;
-        }
 
         while (i < sortedA.length() && j < sortedB.length())
         {
