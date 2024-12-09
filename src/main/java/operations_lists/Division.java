@@ -44,6 +44,9 @@ public class Division extends Operation
 
     private boolean hasQuotient(String a, String b)
     {
+        a = Operation.replaceSubtractiveSymbols(a);
+        b = Operation.replaceSubtractiveSymbols(b);
+
         String sortedA = Operation.sort(a);
         String sortedB = Operation.sort(b);
 
